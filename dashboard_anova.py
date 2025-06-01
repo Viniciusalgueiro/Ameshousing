@@ -285,3 +285,52 @@ else:  # Carregou mas não achou coluna de preço ou não há categóricas
             f"A coluna de preço de venda ('saleprice' ou similar) não foi encontrada no dataset. Verifique as colunas disponíveis: {todas_colunas}")
     if not colunas_categoricas_selecionaveis:
         st.error("Nenhuma coluna categórica adequada para análise foi identificada.")
+
+# No final do script Streamlit, após o loop de análise das variáveis
+
+if variaveis_selecionadas: # Somente mostrar se alguma análise foi feita
+    st.header("3. Insights Gerais e Recomendações")
+    with st.expander("Ver Análise Detalhada e Recomendações"):
+        st.markdown("""
+        ### Como Interpretar os Resultados para Tomada de Decisão:
+
+        A análise ANOVA nos ajuda a entender se uma característica específica da casa (como estilo da casa,
+        ano da venda, ou estilo do telhado) tem uma associação estatisticamente significativa com o preço
+        médio de venda.
+
+        **Para as variáveis analisadas (`HouseStyle`, `YrSold`, `RoofStyle`):**
+
+        #### `HouseStyle` (Estilo da Moradia):
+        * **Impacto Geral:** Geralmente significativo. Estilos diferentes (Térrea, Dois Andares, Níveis Divididos)
+            atraem diferentes compradores e têm diferentes custos e áreas construídas.
+        * **Orientação para Corretores:** Utilize o estilo para segmentar o marketing e justificar faixas de preço.
+        * **Orientação para Investidores:** Analise a popularidade e o potencial de valorização de diferentes estilos
+            na sua área de interesse.
+
+        #### `YrSold` (Ano da Venda):
+        * **Impacto Geral:** Pode ser significativo se o mercado passou por mudanças (altas ou baixas) durante
+            os anos analisados (ex: 2006-2010). Reflete tendências macroeconômicas.
+        * **Orientação para Corretores:** Fornece contexto histórico para a precificação atual e ajuda a gerenciar
+            expectativas.
+        * **Orientação para Investidores:** Sublinha a importância de entender os ciclos de mercado, embora os dados
+            históricos de `YrSold` não prevejam o futuro diretamente.
+
+        #### `RoofStyle` (Estilo do Telhado):
+        * **Impacto Geral:** Pode ser significativo. Certos estilos (ex: Quatro Águas vs. Duas Águas) podem estar
+            associados a diferentes níveis de custo, durabilidade e estética.
+        * **Orientação para Corretores:** Um detalhe que pode agregar valor, especialmente se o telhado for novo
+            ou de um estilo particularmente desejável ou durável.
+        * **Orientação para Investidores:** O custo de manutenção e substituição pode variar com o estilo do telhado.
+            A condição do telhado é mais crítica que o estilo em si, mas o estilo influencia o custo.
+
+        **Recomendações Gerais:**
+        * **Corretores:** Usem esses insights para refinar suas estratégias de precificação, marketing e aconselhamento
+            aos clientes. Uma casa não é apenas um conjunto de quartos, mas um conjunto de características que, juntas,
+            determinam seu valor.
+        * **Investidores:** Considerem como essas características (e outras) se alinham com seus objetivos de
+            investimento, seja para renda, "flipping" ou valorização a longo prazo. Focar em características
+            que têm um impacto positivo e duradouro no valor é fundamental.
+
+        *Lembre-se que a ANOVA univariada mostra a relação de uma variável por vez com o preço.
+        Para uma análise mais completa do impacto combinado de múltiplas variáveis, a Regressão Linear (Parte II da sua tarefa original) seria o próximo passo.*
+        """)
